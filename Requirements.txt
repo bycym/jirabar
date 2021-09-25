@@ -1,0 +1,3 @@
+qdarkstyle
+jira
+pyqt5
