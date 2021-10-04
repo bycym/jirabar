@@ -1,12 +1,18 @@
 # Deploy exe
 
+## Install missing modules
+```
+pip install -r Requirements.txt
+```
+
+## Build Jirabar
+
 run powershell az administrator
 ```
- C:\Python39\Scripts\pyinstaller.exe --name="Jirabar" --windowed --onefile .\main_dropdown_jira.py
+ C:\Python39\Scripts\pyinstaller.exe --name="Jirabar" --windowed --onefile .\main.py
 ```
 
 # Config file update
-
 
 Create an API token here for password: 
 https://id.atlassian.com/manage/api-tokens
