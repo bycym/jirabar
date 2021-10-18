@@ -25,7 +25,6 @@ WAIT_TIME=10*60  # 10 minutes wait
 CACHE_FILE="jira_noti.cache"
 WINDOWS_OPACITY=0.7
 
-
 class ExtendedComboBox(QComboBox):
   def __init__(self, parent=None):
     super(ExtendedComboBox, self).__init__(parent)
@@ -73,10 +72,25 @@ class ExtendedComboBox(QComboBox):
 
 
 class GuiPart(QMainWindow):
+
+  def mousePressEvent(self, event):
+    self.old_pos = event.screenPos()
+
+  def mouseMoveEvent(self, event):
+    if self.clicked:
+      dx = self.old_pos.x() - event.screenPos().x()
+      dy = self.old_pos.y() - event.screenPos().y()
+      self.move(self.pos().x() - dx, self.pos().y() - dy)
+    self.old_pos = event.screenPos()
+    self.clicked = True
+
+    return QWidget.mouseMoveEvent(self, event)
+
   def __init__(self, master, queue, endCommand):
     self.queue = queue
     self.endCommand = endCommand;
-    
+    self.clicked = False
+
     super().__init__()
 
     # setting title
